@@ -2,7 +2,7 @@
 name: Auto builds
 on: [ pull_request, push ]
 jobs:
-  build:
+  Build:
     strategy:
       matrix:
         java: [ 16 ]
