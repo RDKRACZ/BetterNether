@@ -17,7 +17,7 @@ minecraft {
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings minecraft.officialMojangMappings()
     //mappings fileTree(dir: "mappings", include: "**.jar")
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -29,7 +29,9 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/javax.annotation/jsr305
 	compileOnly group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-	modCompileOnly "com.terraformersmc:modmenu:${modmenu_version}"
+	modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+    useApi "com.github.paulevsGitch:BCLib:${project.bclib_version}"
 }
 
 repositories {
@@ -40,7 +42,22 @@ repositories {
         url = 'https://jitpack.io'
     }
     maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/releases/"}
+	//maven { url "https://maven.terraformersmc.com/releases/"}
+    maven { url 'https://jitpack.io' }
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+def useApi(String dep) {
+    dependencies.modApi(dep) {
+        exclude group: 'net.fabricmc.fabric-api'
+        exclude group: 'net.fabricmc'
+        if (!dep.contains("me.shedaniel")) {
+            exclude group: 'me.shedaniel.cloth'
+            exclude group: 'me.shedaniel'
+        }
+    }
 }
 
 processResources {
