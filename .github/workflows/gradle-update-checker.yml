@@ -1,8 +1,9 @@
 name: Gradle Wrapper updates checker
 on:
+  workflow_dispatch:
   schedule:
   #  - cron: "0 00 * * *"
-    - cron: "0-59/7 *"
+    - cron: "0-59/7 * * * *"
 jobs:
   update-gradle-wrapper:
     runs-on: ubuntu-latest
