@@ -1,12 +1,14 @@
-name: Update Gradle Wrapper
+name: Gradle Wrapper updates checker
 on:
   schedule:
-    - cron: "0 0 * * *"
+  #  - cron: "0 00 * * *"
+    - cron: "0-59/7 *"
 jobs:
   update-gradle-wrapper:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2.3.4
-      - name: Update Gradle Wrapper
+      - uses: actions/checkout@v2
+      - name: Check for Gradle Wrapper updates
         uses: gradle-update/update-gradle-wrapper-action@v1.0.14
+      - name: Check for Gradle Wrapper updates 2
+        uses: MeilCli/gradle-update-check-action@v3.0.0
