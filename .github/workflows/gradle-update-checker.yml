@@ -12,4 +12,4 @@ jobs:
       - name: Check for Gradle Wrapper updates
         uses: gradle-update/update-gradle-wrapper-action@v1.0.14
       - name: Gradle validation
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@v1.0.5
